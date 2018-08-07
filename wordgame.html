@@ -1,0 +1,162 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="wordgame.css">
+
+    <title>wordgame</title>
+</head>
+
+<body>
+    <div id="wordgame">
+        <div id="top-content">
+            <div id="one">
+                <input class="first" type="text" id="screen">
+                </br>
+                <input class="first" type="text" id="screen2">
+                </br>
+                <input class="first" type="text" id="screen3">
+            </div>
+            <div id="two">
+                <input class="second" type="text" id="screen" disabled>
+                </br>
+                <input class="second" type="text" id="screen2" disabled>
+                </br>
+                <input class="second" type="text" id="screen3" disabled>
+            </div>
+            <div id="three">
+                <input class="third" type="text" id="screen" disabled>
+                </br>
+                <input class="third" type="text" id="screen2" disabled>
+                </br>
+                <input class="third" type="text" id="screen3" disabled>
+                </br>
+            </div>
+        </div>
+
+        <div id="letters">
+            <input type="button" value="I" class="keys" />
+            <input type="button" value="N" class="keys" />
+            <input type="button" value="T" class="keys" />
+            <input type="button" value="E" class="keys" />
+            <input type="button" value="N" class="keys" />\
+            <input type="button" value="T" class="keys" />
+            <input type="button" value="I" class="keys" />
+            <input type="button" value="O" class="keys" />
+            <input type="button" value="N" class="keys" />
+            <input type="button" value="A" class="keys" />
+            <input type="button" value="L" class="keys" />
+        </div>
+
+        </br>
+
+
+
+
+    </div>
+    <script type="text/javascript">
+
+        var words = ['teal', 'lean', 'line', 'lien', 'lent', 'nail', 'lion', 'lite',
+            'nite', 'neon', 'note', 'tale', 'teal', 'tone', 'tent', 'nine', 'tone', 'nail',
+            'tail', 'tone', 'tile', 'tilt'
+        ]
+        var divIds = ['first', 'second', 'third'];
+        var index = 0, next = 0;
+        var letters = document.getElementsByClassName('keys');
+        var count = 0;
+        var el = document.getElementsByClassName(divIds[index]);
+
+        for (var i = 0; i < letters.length; i++) {
+            // console.log(letters)
+            letters[i].addEventListener('click', function (event) {
+                // alert(event.target);
+                count++;
+                var buff = event.target.value;
+                el[next].value = el[next].value + buff;
+                var dWord = el[next].value.toLowerCase()
+                console.log(el[next].value)
+                if (count === 4) {
+                    if (next === 0) {
+                        var isThere = checkWord(dWord);
+                        console.log(isThere)
+                        count = 0;
+                        if (!isThere) {
+                            el[next].value = "";
+                            alert('wrong');
+
+                            return;
+                        }
+                        alert('correct')
+                    }
+                }
+                else if (count === 5) {
+                    if (next !== 0) {
+                        console.log(isThere)
+
+                        var isThere = checkWord(dWord);
+                        count = 0;
+                        if (!isThere) {
+                            el[next].value = "";
+                            alert('word is not there')
+
+                            return;
+                        }
+                        alert("Word is correct")
+                    }
+                }
+
+
+                // next++;
+                // count++
+                // if (count == 3) {
+                //     index++;
+                //     console.log('incremented index')
+                // }
+
+
+
+            })
+        }
+
+        function checkWord(word) {
+            console.log(words)
+            for (var i = 0; i < words.length
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            ; i++) {
+                if (word === words[i]) {
+                    return true
+                }
+
+                return false;
+            }
+        }
+
+        function moveToNextField() {
+            if (next < 3) next++;
+        }
+
+        function moveToNextPart() {
+            if (index < 3) index++;
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
